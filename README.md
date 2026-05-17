@@ -26,38 +26,35 @@ The project's primary goal is **architectural clarity**: every design decision i
 ## 🗂️ Project Structure
 
 ```
-src/
-└── com/
-    └── airtribe/
-        └── ridewise/
-            ├── Main.java
-            ├── model/
-            │   ├── Rider.java
-            │   ├── Driver.java
-            │   ├── Ride.java
-            │   ├── FareReceipt.java
-            │   └── RideStatus.java
-            ├── strategy/
-            │   ├── RideMatchingStrategy.java
-            │   ├── NearestDriverStrategy.java
-            │   ├── LeastActiveDriverStrategy.java
-            │   ├── FareStrategy.java
-            │   ├── DefaultFareStrategy.java
-            │   └── PeakHourFareStrategy.java
-            ├── service/
-            │   ├── RiderService.java
-            │   ├── DriverService.java
-            │   └── RideService.java
-            ├── exception/
-            │   └── NoDriverAvailableException.java
-            └── util/
-                └── IdGenerator.java
-
-docs/
-├── Requirements.md
-├── Class_Model.md
-├── SOLID_Reflection.md
-└── Object_Relationships.md
+com/
+└── airtribe/
+    ├── docs/
+    │   └── Requirements.md
+    ├── exception/
+    │   └── NoDriverAvailableException.java
+    ├── model/
+    │   ├── Driver.java
+    │   ├── FareReceipt.java
+    │   ├── Location.java
+    │   ├── Ride.java
+    │   ├── Rider.java
+    │   ├── RideStatus.java
+    │   └── VehicleType.java
+    ├── ridewise/
+    │   └── Main.java
+    ├── service/
+    │   ├── DriverService.java
+    │   ├── RiderService.java
+    │   └── RideService.java
+    ├── strategy/
+    │   ├── DefaultFareStrategy.java
+    │   ├── FareStrategy.java
+    │   ├── LeastActiveDriverStrategy.java
+    │   ├── NearestDriverStrategy.java
+    │   ├── PeakHourFareStrategy.java
+    │   └── RideMatchingStrategy.java
+    └── util/
+        └── IdGenerator.java
 ```
 
 ---
@@ -70,6 +67,7 @@ docs/
 | `Driver` | `id`, `name`, `currentLocation`, `available` |
 | `Ride` | `id`, `rider`, `driver`, `distance`, `status` |
 | `FareReceipt` | `rideId`, `amount`, `generatedAt` |
+| `Location` | Represents coordinates / position data |
 
 **Enums:** `RideStatus` · `VehicleType (BIKE, AUTO, CAR)`
 
@@ -165,7 +163,7 @@ git clone https://github.com/your-username/ridewise.git
 cd ridewise
 
 # Compile
-javac -d out src/com/airtribe/ridewise/**/*.java src/com/airtribe/ridewise/Main.java
+javac -d out $(find com/ -name "*.java")
 
 # Run
 java -cp out com.airtribe.ridewise.Main
@@ -175,11 +173,6 @@ java -cp out com.airtribe.ridewise.Main
 
 ## 📄 Documentation
 
-Detailed docs are available in the `/docs` folder:
+Detailed docs are available in the `com/airtribe/docs/` folder:
 
-- [`Requirements.md`](docs/Requirements.md) — Full functional & non-functional requirements
-- [`Class_Model.md`](docs/Class_Model.md) — UML-style class breakdown
-- [`SOLID_Reflection.md`](docs/SOLID_Reflection.md) — How each SOLID principle is applied
-- [`Object_Relationships.md`](docs/Object_Relationships.md) — Entity relationships and dependencies
-
-
+- [`Requirements.md`](com/airtribe/docs/Requirements.md) — Full functional & non-functional requirements
